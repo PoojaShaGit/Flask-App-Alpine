@@ -4,15 +4,15 @@ pipeline {
         stage('Build Docker App') {
             steps {
                 sh '''
-                docker build -t poojasdocker2023/flask-app-alpine:latest -t poojasdocker2023/flask-app-alpine:build-$BUILD_NUMBER .
+                docker build -t eu.gcr.io/lbg-cloud-incubation/flask-app-alpine:latest -t eu.gcr.io/lbg-cloud-incubation/flask-app-alpine:build-$BUILD_NUMBER .
                 '''
             }
         }
         stage('Push Image to Docker Hub') {
             steps {
                 sh '''
-                docker push poojasdocker2023/flask-app-alpine:latest
-                docker push poojasdocker2023/flask-app-alpine:build-$BUILD_NUMBER
+                docker push eu.gcr.io/lbg-cloud-incubation/flask-app-alpine:latest
+                docker push eu.gcr.io/lbg-cloud-incubation/flask-app-alpine:build-$BUILD_NUMBER
                 '''
             }
         }
@@ -23,7 +23,7 @@ pipeline {
                 docker stop alpine-app
                 docker rm alpine-app
                 docker rmi flask-app-alpine
-                docker run -d -p 80:5500 --name alpine-app poojasdocker2023/flask-app-alpine:latest
+                docker run -d -p 80:5500 --name alpine-app eu.gcr.io/lbg-cloud-incubation/flask-app-alpine:latest
                 '''
             }
         }
