@@ -18,6 +18,7 @@ pipeline {
         }
         stage('Deploy Application') {
             steps {
+                script{
                 if ("${GIT_BRANCH}" == 'origin/main') {
                 sh '''
                 ssh -i "~/.ssh/id_rsa" jenkins@35.246.18.45 << EOF
