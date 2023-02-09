@@ -8,7 +8,7 @@ pipeline {
                 '''
             }
         }
-        stage('Push Image to Docker Hub') {
+        stage('Push Image to gcr Hub') {
             steps {
                 sh '''
                 docker push eu.gcr.io/lbg-cloud-incubation/flask-app-alpine:latest
