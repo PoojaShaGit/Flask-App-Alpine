@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flask-app
+  labels:
+    app: flask-app-alpine
+spec:
+  containers:
+  - name: flask-app-container
+    image: flask-app-alpine:latest
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: flask-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: flask-app-alpine
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5500
