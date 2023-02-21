@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: flask-app-container
-    image: flask-app-alpine:latest
+    image: poojasdocker2023/flask-app-alpine:latest
 ---
 kind: Service
 apiVersion: v1
