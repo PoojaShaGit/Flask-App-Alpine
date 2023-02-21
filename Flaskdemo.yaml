@@ -1,13 +1,28 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: flask-app
   labels:
     app: flask-app-alpine
 spec:
-  containers:
-  - name: flask-app-container
-    image: poojasdocker2023/flask-app-alpine:latest
+  replicas: 10
+  selector:
+    matchLabels:
+      app: flask-app-alpine
+  strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: flask-app-alpine
+    spec:
+      containers:
+      - name: flask-app-container
+        image: poojasdocker2023/flask-app-alpine:latest
+        ports:
+        - containerPort: 5500
 ---
 kind: Service
 apiVersion: v1
