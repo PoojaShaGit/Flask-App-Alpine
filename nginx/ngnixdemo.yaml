@@ -19,7 +19,7 @@ spec:
         app: nginx-app-custom
     spec:
       containers:
-      - name: ngnginx-app-containerinx
+      - name: nginx-app-container
         image: poojasdocker2023/nginx-app-cutom:latest
         ports:
         - containerPort: 80
@@ -31,7 +31,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: nginx-app-cutom
+    app: nginx-app-custom
   ports:
   - protocol: TCP
     port: 80
